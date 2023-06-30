@@ -20,7 +20,7 @@ jobs:
           extensions: gmp
           tools: composer:v2, phpunit
       - name: Install dependencies
-        run: composer install
+        run: composer install && composer update --no-scripts
       - name: Run coverage
         run: phpunit --coverage-xml coverage
       - uses: docker/login-action@v2
