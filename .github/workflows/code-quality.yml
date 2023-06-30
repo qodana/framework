@@ -19,7 +19,6 @@ jobs:
       - name: PHPUnit tests
         uses: php-actions/phpunit@v3
         with:
-          configuration: "phpunit.xml.dist"
           php_extensions: "xdebug"
           coverage_xml: "coverage"
       - uses: docker/login-action@v2
