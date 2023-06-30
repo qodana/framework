@@ -22,7 +22,7 @@ jobs:
       - name: Install dependencies
         run: composer install && composer update --no-scripts
       - name: Run coverage
-        run: phpunit --coverage-xml coverage
+        run: ./vendor/bin/phpunit --coverage-xml coverage
       - uses: docker/login-action@v2
         with:
           registry: registry.jetbrains.team
