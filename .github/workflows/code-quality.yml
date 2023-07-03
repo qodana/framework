@@ -18,7 +18,7 @@ jobs:
           php-version: '8.2'
           coverage: pcov
           extensions: gmp
-          tools: composer:v2, phpunit
+          tools: composer:v2
       - name: Install dependencies
         run: composer install && composer update --no-scripts
 #       - name: Migrate phpunit.xml
