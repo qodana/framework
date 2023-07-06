@@ -36,7 +36,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: php-coverage-data
-          path: PHP/phpunit/.qodana/code-coverage
+          path: .qodana/code-coverage
 
       - uses: docker/login-action@v2
         with:
