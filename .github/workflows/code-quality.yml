@@ -12,11 +12,36 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - uses: php-actions/composer@v6
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
         with:
-          php_version: "8.1"
-          php_extensions: gmp
+          php-version: '8.1'
+          coverage: xdebug
+          tools: composer:v2
+
+      - name: Validate composer.json and composer.lock
+        run: composer validate
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress --no-suggest
+
+      - name: Run tests
+        continue-on-error: true # run Qodana even if tests failed to generate a coverage report
+        run: ./vendor/bin/phpunit --coverage-clover ./.qodana/code-coverage/coverage.xml
+
+        env:
+          XDEBUG_MODE: coverage
+
+      - name: Archive coverage data
+        uses: actions/upload-artifact@v2
+        with:
+          name: php-coverage-data
+          path: PHP/phpunit/.qodana/code-coverage
+
+      - uses: docker/login-action@v2
+        with:
+          registry: registry.jetbrains.team
+          username: ${{ secrets.SPACE_REGISTRY_USERNAME }}
+          password: ${{ secrets.SPACE_REGISTRY_PASSWORD }}
       - name: 'Qodana Scan'
         uses: JetBrains/qodana-action@main
-        env:
-          QODANA_TOKEN: ${{ secrets.QODANA_TOKEN }}

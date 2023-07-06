@@ -1,2 +1,2 @@
 version: "1.0"
-linter: jetbrains/qodana-php:latest
+linter: registry.jetbrains.team/p/sa/containers/qodana-php:2023.2-nightly
