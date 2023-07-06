@@ -1,7 +1,2 @@
 version: "1.0"
 linter: registry.jetbrains.team/p/sa/containers/qodana-php:2023.2-nightly
-bootstrap: |
-  mkdir -p /data/coverage
-  ./vendor/bin/phpunit --coverage-xml=coverage
-  mv coverage/index.xml /data/coverage
-  rm -rf coverage
