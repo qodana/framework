@@ -26,7 +26,9 @@ jobs:
         run: composer install --prefer-dist --no-progress --no-suggest
 
       - name: Run tests
+        continue-on-error: true # run Qodana even if tests failed to generate a coverage report
         run: ./vendor/bin/phpunit --coverage-clover ./.qodana/code-coverage/coverage.xml
+
         env:
           XDEBUG_MODE: coverage
 
