@@ -38,10 +38,5 @@ jobs:
           name: php-coverage-data
           path: .qodana/code-coverage
 
-      - uses: docker/login-action@v2
-        with:
-          registry: registry.jetbrains.team
-          username: ${{ secrets.SPACE_REGISTRY_USERNAME }}
-          password: ${{ secrets.SPACE_REGISTRY_PASSWORD }}
       - name: 'Qodana Scan'
         uses: JetBrains/qodana-action@main
